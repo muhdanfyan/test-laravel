@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\API\KategoriBeritaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,5 +19,10 @@ use App\Http\Controllers\TaskController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-
 Route::apiResource('tasks', TaskController::class);
+
+
+Route::group(['prefix' => 'v1'], function () {
+    Route::get('kategori-berita', [KategoriBeritaController::class, 'listKategoriBerita']);
+});
+
